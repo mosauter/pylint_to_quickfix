@@ -11,6 +11,11 @@ local function line_to_entry(line)
 end
 
 function M.pylint_to_qf(file_path, mode)
+    if vim.fn.executable("pylint") == 0 then
+        print("'pylint' is not on $PATH, aborting...")
+        return
+    end
+
     if mode == nil then
         mode = "r"
     end
